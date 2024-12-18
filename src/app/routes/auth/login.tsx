@@ -1,16 +1,5 @@
-import React from "react";
-import FormInput from "../../../components/ui/form-input";
+import Login from "../../../features/auth/components/login";
 
-export default function Login() {
-  return (
-    <div>
-      <p>Sign in</p>
-      <p>
-        Don't have an account? <a>Register Here</a>
-      </p>
-      <form>
-        <FormInput label="Email" placeholder="Enter email" />
-      </form>
-    </div>
-  );
+export default function LoginPage() {
+  return <Login />;
 }
