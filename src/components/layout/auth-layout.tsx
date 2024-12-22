@@ -16,8 +16,8 @@ export default function AuthLayout() {
   return (
     <div className="flex h-[100vh] w-full justify-between">
       <div className="m-auto flex w-full max-w-[500px] flex-col gap-8 p-8 lg:w-[30%]">
-        <p className="text-blueB text-center text-3xl font-extrabold">
-          WidyaWicara
+        <p className="text-center text-3xl font-extrabold text-blueB">
+          TechSpace
         </p>
         <div>
           <p className="text-2xl font-extrabold">{authAction}</p>
@@ -25,17 +25,22 @@ export default function AuthLayout() {
             {authText}{" "}
             <a
               onClick={() => navigate(redirectRoute)}
-              className="text-blueB cursor-pointer font-semibold"
+              className="cursor-pointer font-semibold text-blueB"
             >
               {redirectText}
             </a>
           </p>
         </div>
         <Outlet />
-        <p className="text-slate-500 mt-2 text-center text-sm">
-          Developed by{" "}
-          <span className="text-blackA">Muhammad Bahrul 'ulum</span>
-        </p>
+        <div>
+          <p className="mt-2 text-center text-sm text-slate-500">
+            Developed by{" "}
+            <span className="text-blackA">Muhammad Bahrul 'ulum</span>
+          </p>
+          <p className="mt-2 text-center text-xs text-slate-500">
+            as a knowledge test for PT. Widya Informasi Nusantara (Widya Wicara)
+          </p>
+        </div>
       </div>
       <div className="hidden h-[100vh] w-[70%] p-4 lg:block">
         <img
