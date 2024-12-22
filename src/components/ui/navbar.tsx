@@ -36,7 +36,8 @@ function Navbar() {
         </div>
         <div className="flex items-center gap-2">
           <img
-            className="h-10 w-10 rounded-full object-cover"
+            className="h-10 w-10 cursor-pointer rounded-full object-cover"
+            onClick={() => navigate("/profile")}
             src={
               user?.profilePhoto ??
               "https://i.pinimg.com/736x/9e/83/75/9e837528f01cf3f42119c5aeeed1b336.jpg"
