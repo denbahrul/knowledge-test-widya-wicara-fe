@@ -1,9 +1,12 @@
 import { MdLogout } from "react-icons/md";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../../hooks/use-store";
 
 function Navbar() {
   const navigate = useNavigate();
+  const user = useAppSelector((state) => state.auth.entities);
+
   function onLogout() {
     Cookies.remove("token");
     navigate("/login");
@@ -32,12 +35,14 @@ function Navbar() {
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <p
-            onClick={() => navigate("/profile")}
-            className="cursor-pointer items-center text-center text-xl font-bold"
-          >
-            bahrul
-          </p>
+          <img
+            className="h-10 w-10 rounded-full object-cover"
+            src={
+              user?.profilePhoto ??
+              "https://i.pinimg.com/736x/9e/83/75/9e837528f01cf3f42119c5aeeed1b336.jpg"
+            }
+          />
+          <p> | </p>
           <button
             onClick={onLogout}
             className="flex items-center gap-2 rounded-md border-[1px] bg-blackA px-4 py-1 text-white"

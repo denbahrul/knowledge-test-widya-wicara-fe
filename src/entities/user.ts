@@ -1,8 +1,9 @@
 export interface UserEntity {
   id: number;
   email: string;
-  username: string;
+  fullName: string;
   gender: genderEnum;
+  profilePhoto?: string;
 }
 
 export enum genderEnum {

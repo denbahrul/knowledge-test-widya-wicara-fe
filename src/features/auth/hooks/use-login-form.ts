@@ -28,9 +28,7 @@ export function useLoginForm() {
         icon: "success",
         title: response.data.message,
         showConfirmButton: false,
-        background: "#1D1D1D",
-        color: "#fff",
-        iconColor: "#04A51E",
+        iconColor: "#006dfc",
         timer: 1000,
       });
       dispatch(getUserLogged());
@@ -41,8 +39,6 @@ export function useLoginForm() {
           icon: "error",
           title: "Oops..",
           text: `${error.response.data.message}`,
-          background: "#1D1D1D",
-          color: "#fff",
         });
       } else {
         console.error("Unexpected error", error);
@@ -50,8 +46,6 @@ export function useLoginForm() {
           icon: "error",
           title: "Error",
           text: "An unexpected error occurred",
-          background: "#1D1D1D",
-          color: "#fff",
         });
       }
     }

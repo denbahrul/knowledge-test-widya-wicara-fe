@@ -1,3 +1,9 @@
+import AddProduct from "../../features/product/component/add-product";
+
 export default function AddProductPage() {
-  return <div>AddProductPage</div>;
+  return (
+    <div>
+      <AddProduct />
+    </div>
+  );
 }

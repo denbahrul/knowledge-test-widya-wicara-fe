@@ -58,9 +58,7 @@ export const createProduct = createAsyncThunk<IProduct, CreateProductDTO>(
         icon: "success",
         title: res.data.message,
         showConfirmButton: false,
-        background: "#181818",
-        color: "#fff",
-        iconColor: "#04A51E",
+        iconColor: "#006dfc",
         timer: 1500,
       });
       return res.data.data;
@@ -71,8 +69,6 @@ export const createProduct = createAsyncThunk<IProduct, CreateProductDTO>(
           icon: "error",
           title: "Oops..",
           text: `${error.message}`,
-          background: "#181818",
-          color: "#fff",
         });
 
         return thunkAPI.rejectWithValue(error.message);
@@ -96,14 +92,12 @@ export const updateProduct = createAsyncThunk<
         formData.append(key, value);
       }
     });
-    const res = await apiV1.patch(`/product/update/${productId}`, formData);
+    const res = await apiV1.put(`/product/update/${productId}`, formData);
     Swal.fire({
       icon: "success",
       title: res.data.message,
       showConfirmButton: false,
-      background: "#181818",
-      color: "#fff",
-      iconColor: "#04A51E",
+      iconColor: "#006dfc",
       timer: 1500,
     });
     return res.data.product;
@@ -114,8 +108,6 @@ export const updateProduct = createAsyncThunk<
         icon: "error",
         title: "Oops..",
         text: `${error.message}`,
-        background: "#181818",
-        color: "#fff",
       });
 
       return thunkAPI.rejectWithValue(error.message);
@@ -132,9 +124,7 @@ export const deleteProduct = createAsyncThunk(
         icon: "success",
         title: res.data.message,
         showConfirmButton: false,
-        background: "#1D1D1D",
-        color: "#fff",
-        iconColor: "#04A51E",
+        iconColor: "#006dfc",
         timer: 1500,
       });
       return res.data.data.id;

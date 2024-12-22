@@ -30,7 +30,7 @@ export default function Card({
       </div>
       <div className="flex justify-between gap-1">
         <button
-          onClick={() => navigate("/update-product")}
+          onClick={() => navigate(`/update-product/${id}`)}
           className="w-full rounded-md bg-blueB p-1 text-center text-white"
         >
           Edit

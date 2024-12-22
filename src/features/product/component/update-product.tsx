@@ -1,34 +1,53 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Button from "../../../components/ui/button";
 import FormInput from "../../../components/ui/form-input";
-import { useAppDispatch } from "../../../hooks/use-store";
+import { useAppDispatch, useAppSelector } from "../../../hooks/use-store";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   CreateProductDTO,
   createProductSchema,
+  UpdateProductDTO,
 } from "../../../validation/productSchema";
-import { createProduct } from "../../../stores/product/async";
+import { getProductById, updateProduct } from "../../../stores/product/async";
+import { useEffect } from "react";
 
-export default function AddProduct() {
+export default function UpdateProduct() {
   const navigate = useNavigate();
+  const { id } = useParams();
   const dispatch = useAppDispatch();
+  const product = useAppSelector((state) => state.product.currentProduct);
+
   const {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm<CreateProductDTO>({
     resolver: zodResolver(createProductSchema),
   });
 
-  async function onSubmit(data: CreateProductDTO) {
-    await dispatch(createProduct(data)).unwrap();
+  useEffect(() => {
+    dispatch(getProductById(+id!));
+  }, []);
+
+  useEffect(() => {
+    if (product) {
+      reset({
+        productName: product.productName,
+        description: product.description,
+      });
+    }
+  }, [product, reset]);
+
+  async function onSubmit(data: UpdateProductDTO) {
+    await dispatch(updateProduct({ data, productId: +id! })).unwrap();
     navigate("/");
   }
   return (
     <div className="m-auto max-w-3xl" onSubmit={handleSubmit(onSubmit)}>
-      <p className="my-8 text-center text-xl font-bold">Add new product</p>
+      <p className="my-8 text-center text-xl font-bold">Update new product</p>
       <form className="flex flex-col gap-3">
         <FormInput
           {...register("productName")}
@@ -65,9 +84,7 @@ export default function AddProduct() {
             ))}
         </div>
         <Button
-          buttonName={
-            isSubmitting ? "Creating product..." : "Crate new product"
-          }
+          buttonName={isSubmitting ? "Updating product..." : "Update product"}
           type="submit"
         />
       </form>

@@ -7,12 +7,11 @@ import {
   RegisterFormInput,
   registerSchema,
 } from "../../../validation/registerSchema";
-import { getUserLogged } from "../../../stores/auth/async";
 import { apiV1 } from "../../../libs/api";
-import { useAppDispatch } from "../../../hooks/use-store";
+import { useNavigate } from "react-router-dom";
 
 export function useRegisterForm() {
-  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -41,12 +40,10 @@ export function useRegisterForm() {
         icon: "success",
         title: response.data.message,
         showConfirmButton: false,
-        background: "#1D1D1D",
-        color: "#fff",
-        iconColor: "#04A51E",
+        iconColor: "#006dfc",
         timer: 1000,
       });
-      dispatch(getUserLogged());
+      navigate("/login");
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
         console.error(error.response.data);
@@ -54,8 +51,6 @@ export function useRegisterForm() {
           icon: "error",
           title: "Oops..",
           text: `${error.response.data.message}`,
-          background: "#1D1D1D",
-          color: "#fff",
         });
       } else {
         console.error("Unexpected error", error);
@@ -63,8 +58,6 @@ export function useRegisterForm() {
           icon: "error",
           title: "Error",
           text: "An unexpected error occurred",
-          background: "#1D1D1D",
-          color: "#fff",
         });
       }
     }
