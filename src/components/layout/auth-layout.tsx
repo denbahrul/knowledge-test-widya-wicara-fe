@@ -1,10 +1,17 @@
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
+import { useAppSelector } from "../../hooks/use-store";
 
 export default function AuthLayout() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Menentukan teks dan route berdasarkan route aktif
+  const auth = useAppSelector((state) => state.auth.entities);
+  const loading = useAppSelector((state) => state.auth.loading);
+
+  if (auth && loading !== "pending") {
+    navigate("/");
+  }
+
   const isRegisterRoute = location.pathname === "/register";
   const authAction = isRegisterRoute ? "Sign up" : "Sign in";
   const redirectRoute = isRegisterRoute ? "/login" : "/register";

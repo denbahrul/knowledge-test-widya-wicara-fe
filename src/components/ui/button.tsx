@@ -8,7 +8,7 @@ export default function Button({ buttonName, ...props }: ButtonProps) {
   return (
     <button
       type="submit"
-      className="mt-4 w-full rounded-xl bg-blueB p-3 text-white"
+      className="mt-4 rounded-xl bg-blueB px-6 py-3 text-white"
       {...props}
     >
       {buttonName}

@@ -4,14 +4,14 @@ import { UserEntity } from "../../entities/user";
 import { apiV1 } from "../../libs/api";
 
 export const getUserLogged = createAsyncThunk<UserEntity, undefined>(
-  "user/getUserLogged",
+  "users/getUserLogged",
   async (_, thunkAPI) => {
     try {
       const token = Cookies.get("token");
       if (!token) {
         return thunkAPI.rejectWithValue("");
       }
-      const res = await apiV1.get("/auth/me");
+      const res = await apiV1.get("/user/me");
 
       if (!res.data) {
         return thunkAPI.rejectWithValue("Invalid authorization header");

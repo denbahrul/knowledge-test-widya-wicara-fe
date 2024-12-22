@@ -1,3 +1,9 @@
+import Profile from "../../features/profile/components/profile";
+
 export default function ProfilePage() {
-  return <div>ProfilePage</div>;
+  return (
+    <div>
+      <Profile />
+    </div>
+  );
 }
